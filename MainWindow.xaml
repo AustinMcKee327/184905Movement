@@ -7,16 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Canvas x:Name="Track">
-        <Rectangle x:Name="rectangle" Fill="Green"  Height="70" Width="70" Canvas.Left="129" Canvas.Top="68" RenderTransformOrigin="0.5,0.514">
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-
+        
     </Canvas>
 </Window>
