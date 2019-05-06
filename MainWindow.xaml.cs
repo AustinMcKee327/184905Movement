@@ -29,7 +29,14 @@ namespace TestingWallsAndPlayers
         Point wallposition1 = new Point();
         Point wallposition2 = new Point();
         Rectangle car = new Rectangle();
-        Rectangle Wall = new Rectangle();
+        Polygon Wall = new Polygon();
+        System.Windows.Point Point1 = new System.Windows.Point(0, 200);
+            System.Windows.Point Point2 = new System.Windows.Point(0, 250);
+            System.Windows.Point Point3 = new System.Windows.Point(300, 200);
+            System.Windows.Point Point4 = new System.Windows.Point(350, 250);
+            System.Windows.Point Point5 = new System.Windows.Point(350, 0);
+            System.Windows.Point Point6 = new System.Windows.Point(300, 0);
+            PointCollection WallPoints = new PointCollection();
 
         public MainWindow()
         {
@@ -47,16 +54,27 @@ namespace TestingWallsAndPlayers
             car.Width = 50;
             car.Height = 50;
             car.Fill = Brushes.Aqua;
-            Wall.Width = 300;
-            Wall.Height = 50;
-            Wall.Fill = Brushes.Black;
+            Wall.Stroke = System.Windows.Media.Brushes.Black;
+            Wall.Fill = System.Windows.Media.Brushes.LightSeaGreen;
+            Wall.StrokeThickness = 2;
+            Wall.HorizontalAlignment = HorizontalAlignment.Left;
+            Wall.VerticalAlignment = VerticalAlignment.Center;
+            
+            WallPoints.Add(Point1);
+            WallPoints.Add(Point2);
+            WallPoints.Add(Point4);
+            WallPoints.Add(Point5);
+            WallPoints.Add(Point6);
+            WallPoints.Add(Point3);
+            Wall.Points = WallPoints;
             Track.Children.Add(Wall);
+            
             Track.Children.Add(car);
             position.X = 100;
             position.Y = 100;
             Canvas.SetLeft(car, position.X);
             Canvas.SetTop(car, position.Y);
-            Canvas.SetTop(Wall, 200);
+            
             car.RenderTransformOrigin = new Point(0.5, 0.5);
         }
 
@@ -67,16 +85,16 @@ namespace TestingWallsAndPlayers
 
                 position.Y += speed * 1;
                 Canvas.SetTop(car, position.Y);
-                if (position.Y >= wallposition1.Y && position.Y <= wallposition2.Y)
+                if (position.Y >= wallposition2.Y && position.Y <= wallposition1.Y)
                 {
                     speed = 0.5;
                     if (position.Y == wallposition2.Y)
-                {
+                    {
                     speed = 0;
                     position.Y -= 10;
                     Canvas.SetTop(car, position.Y);
                     
-                }
+                    }
                 }
                 
                 else
@@ -89,7 +107,7 @@ namespace TestingWallsAndPlayers
             {
                 position.Y -= speed * 1;
                 Canvas.SetTop(car, position.Y);
-                if (position.Y <= wallposition2.Y && position.Y >= wallposition1.Y)
+                if (position.Y == wallposition2.Y && position.Y >= wallposition1.Y)
                 {
                     speed = 0.5;
                 }
@@ -104,11 +122,22 @@ namespace TestingWallsAndPlayers
             }
             if (Keyboard.IsKeyDown(Key.Right))
             {
-                car.RenderTransform = new RotateTransform()
-                { Angle = i };
-                i += 10;
+                position.X +=  10;
+                Canvas.SetLeft(car, position.X);
+                if (position.X + 50 > Point6.X && position.X+50 < Point4.X)
+                {
+                    speed = 0.5;
+                }
+                if (position.X+50 == Point4.X)
+                {
+                    position.X -= 20;
+                }
+                else
+                {
+                    speed = 5;
+                }
             }
-
+           
 
         }
             
