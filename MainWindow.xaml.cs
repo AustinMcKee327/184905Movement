@@ -81,17 +81,14 @@ namespace TestingWallsAndPlayers
 
         private void GameTimer_Tick(object sender, EventArgs e)
         {
-            wallposition1 = WallPoint1;
-            wallposition2 = WallPoint2;
-            wallposition3 = WallPoint4;
-            wallposition4 = WallPoint6;
+            
             
             if (Keyboard.IsKeyDown(Key.Down))
             {
 
                 position.Y += speed;
                 Canvas.SetTop(car, position.Y);
-                if (position.Y + 50 >= wallposition1.Y && position.Y + 50 <= wallposition2.Y)
+                if (position.Y + 50 >= WallPoint1.Y && position.Y + 50 <= WallPoint2.Y)
                 {
                     speed = 0.5;
 
@@ -132,7 +129,7 @@ namespace TestingWallsAndPlayers
             {
                 position.X += speed;
                 Canvas.SetLeft(car, position.X);
-                if (position.X + 50 <= wallposition3.X && position.X + 50 >= wallposition4.X)
+                if (position.X + 50 <= WallPoint4.X && position.X + 50 >= WallPoint6.X)
                 {
                     speed = 0.5;
 
@@ -152,13 +149,13 @@ namespace TestingWallsAndPlayers
             {
                 position.X -= 10;
                 Canvas.SetLeft(car, position.X);
-                if (position.X + 50 >= wallposition3.X && position.X + 50 <= WallPoint6.X)
+                if (position.X + 50 >= WallPoint4.X && position.X + 50 <= WallPoint6.X)
                 {
                     speed = 0.5;
 
-                    if (position.X + 50 == wallposition3.X)
+                    if (position.X + 50 == WallPoint4.X)
                     {
-                        position.X -= 20;
+                        position.X -= 10;
                     }
                 }
                 else
